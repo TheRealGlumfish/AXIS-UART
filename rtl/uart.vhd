@@ -48,6 +48,9 @@ architecture rtl of uart is
     signal tx_clk_cnt  : unsigned(CLK_PER_BIT_WIDTH-1 downto 0) := to_unsigned(0, CLK_PER_BIT_WIDTH);
     signal tx_data_cnt : unsigned(2 downto 0) := to_unsigned(0, 3);
 
+    attribute syn_preserve : integer;
+    attribute syn_preserve of uart_rx_q1 : signal is 1;
+    attribute syn_preserve of uart_rx_q2 : signal is 1;
 begin
     assert CLK_FREQ > (BAUD_RATE * 4) -- TODO: Check if this constraint should be tightened, i.e. a higher multiple of the
     -- CLK_FREQUENCY, we should add some constraint about multiples and such as well as how much "gap" we can have
